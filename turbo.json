@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "globalEnv": ["NODE_ENV"],
   "ui": "tui",
   "tasks": {
     "build": {

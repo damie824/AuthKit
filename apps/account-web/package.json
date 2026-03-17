@@ -22,7 +22,7 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*"
+    "@authkit/typescript-config": "workspace:*",
+    "@authkit/eslint-config": "workspace:*"
   }
 }
