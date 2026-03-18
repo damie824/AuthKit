@@ -1,14 +1,15 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { OauthScopeEntity } from "./scope.entity";
-import { OauthConnectEntity } from "./connect.entity";
+import type { Relation } from "typeorm";
+import { OauthScopeEntity } from "./scope.entity.js";
+import { OauthConnectEntity } from "./connect.entity.js";
 
 @Entity("oauth-agreed-scope")
 export class OauthAgreedScopeEntity {
   @PrimaryColumn()
   scope_id!: number;
 
-  @PrimaryColumn()
-  connect_id!: number;
+  @PrimaryColumn({ type: "uuid" })
+  connect_id!: string;
 
   @Column()
   agreed_at!: Date;
@@ -17,11 +18,11 @@ export class OauthAgreedScopeEntity {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "scope_id" })
-  scope!: OauthScopeEntity;
+  scope!: Relation<OauthScopeEntity>;
 
   @ManyToOne(() => OauthConnectEntity, (connection) => connection.agreed, {
     onDelete: "CASCADE",
   })
-  @JoinColumn({ name: "uesr_id" })
-  user!: OauthConnectEntity;
+  @JoinColumn({ name: "connect_id" })
+  connect!: Relation<OauthConnectEntity>;
 }

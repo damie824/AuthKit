@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { OauthApplicationEntity } from "./application.entity";
+import type { Relation } from "typeorm";
+import { OauthApplicationEntity } from "./application.entity.js";
 
 @Entity("oauth-redirect-uri")
 export class OauthRedirectURIEntity {
@@ -12,5 +13,5 @@ export class OauthRedirectURIEntity {
   @ManyToOne(() => OauthApplicationEntity, (application) => application, {
     onDelete: "CASCADE",
   })
-  application!: OauthApplicationEntity;
+  application!: Relation<OauthApplicationEntity>;
 }

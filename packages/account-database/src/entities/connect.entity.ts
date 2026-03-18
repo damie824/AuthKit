@@ -4,22 +4,24 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
+  Unique,
 } from "typeorm";
-import { UserEntity } from "./user.entity";
-import { OauthApplicationEntity } from "./application.entity";
-import { OauthAgreedScopeEntity } from "./agreed_scopes.entity";
+import type { Relation } from "typeorm";
+import { UserEntity } from "./user.entity.js";
+import { OauthApplicationEntity } from "./application.entity.js";
+import { OauthAgreedScopeEntity } from "./agreed_scopes.entity.js";
 
 @Entity("oauth-connect")
+@Unique(["application_id", "user_id"])
 export class OauthConnectEntity {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @PrimaryColumn()
+  @Column()
   application_id!: number;
 
-  @PrimaryColumn()
+  @Column()
   user_id!: number;
 
   @Column()
@@ -29,7 +31,7 @@ export class OauthConnectEntity {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "user_id" })
-  user!: UserEntity;
+  user!: Relation<UserEntity>;
 
   @ManyToOne(
     () => OauthApplicationEntity,
@@ -39,8 +41,8 @@ export class OauthConnectEntity {
     },
   )
   @JoinColumn({ name: "application_id" })
-  application!: OauthApplicationEntity;
+  application!: Relation<OauthApplicationEntity>;
 
-  @OneToMany(() => OauthAgreedScopeEntity, (agreed) => agreed)
-  agreed!: OauthAgreedScopeEntity[];
+  @OneToMany(() => OauthAgreedScopeEntity, (agreed) => agreed.connect)
+  agreed!: Relation<OauthAgreedScopeEntity[]>;
 }

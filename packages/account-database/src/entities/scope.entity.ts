@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { UserEntity } from "./user.entity";
-import { OauthRequireScopeEntity } from "./require_scope.entity";
-import { OauthAgreedScopeEntity } from "./agreed_scopes.entity";
+import type { Relation } from "typeorm";
+import { OauthRequireScopeEntity } from "./require_scope.entity.js";
+import { OauthAgreedScopeEntity } from "./agreed_scopes.entity.js";
 
 @Entity("oauth-scope")
 export class OauthScopeEntity {
@@ -12,11 +12,11 @@ export class OauthScopeEntity {
   title!: string;
 
   @Column()
-  value!: keyof UserEntity;
+  value!: string;
 
   @OneToMany(() => OauthRequireScopeEntity, (require) => require.scope)
-  requires!: OauthRequireScopeEntity[];
+  requires!: Relation<OauthRequireScopeEntity[]>;
 
   @OneToMany(() => OauthAgreedScopeEntity, (agreed) => agreed.scope)
-  agreed!: OauthAgreedScopeEntity[];
+  agreed!: Relation<OauthAgreedScopeEntity[]>;
 }

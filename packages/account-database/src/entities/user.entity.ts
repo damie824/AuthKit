@@ -1,5 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { OauthConnectEntity } from "./connect.entity";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import type { Relation } from "typeorm";
+import { OauthConnectEntity } from "./connect.entity.js";
 
 @Entity("user")
 export class UserEntity {
@@ -16,5 +22,5 @@ export class UserEntity {
   nickname!: string;
 
   @OneToMany(() => OauthConnectEntity, (connect) => connect.user)
-  oauth_connects!: OauthConnectEntity[];
+  oauth_connects!: Relation<OauthConnectEntity[]>;
 }

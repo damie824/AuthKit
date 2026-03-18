@@ -1,7 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { OauthRequireScopeEntity } from "./require_scope.entity";
-import { OauthConnectEntity } from "./connect.entity";
-import { OauthRedirectURIEntity } from "./redirect_uri.entity";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import type { Relation } from "typeorm";
+import { OauthRequireScopeEntity } from "./require_scope.entity.js";
+import { OauthConnectEntity } from "./connect.entity.js";
+import { OauthRedirectURIEntity } from "./redirect_uri.entity.js";
 
 @Entity("oauth-application")
 export class OauthApplicationEntity {
@@ -18,11 +24,11 @@ export class OauthApplicationEntity {
   is_admin?: boolean;
 
   @OneToMany(() => OauthRequireScopeEntity, (require) => require.application)
-  requires!: OauthRequireScopeEntity[];
+  requires!: Relation<OauthRequireScopeEntity[]>;
 
   @OneToMany(() => OauthConnectEntity, (connect) => connect.application)
-  connected!: OauthConnectEntity[];
+  connected!: Relation<OauthConnectEntity[]>;
 
   @OneToMany(() => OauthRedirectURIEntity, (uri) => uri.application)
-  uri!: OauthRedirectURIEntity[];
+  uri!: Relation<OauthRedirectURIEntity[]>;
 }

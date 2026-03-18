@@ -1,16 +1,18 @@
-import { OauthAgreedScopeEntity } from "./entities/agreed_scopes.entity";
-import { OauthApplicationEntity } from "./entities/application.entity";
-import { OauthConnectEntity } from "./entities/connect.entity";
-import { OauthRequireScopeEntity } from "./entities/require_scope.entity";
-import { OauthScopeEntity } from "./entities/scope.entity";
-import { UserEntity } from "./entities/user.entity";
+import { OauthAgreedScopeEntity } from "./entities/agreed_scopes.entity.js";
+import { OauthApplicationEntity } from "./entities/application.entity.js";
+import { OauthConnectEntity } from "./entities/connect.entity.js";
+import { OauthRequireScopeEntity } from "./entities/require_scope.entity.js";
+import { OauthScopeEntity } from "./entities/scope.entity.js";
+import { UserEntity } from "./entities/user.entity.js";
+import { OauthRedirectURIEntity } from "./entities/redirect_uri.entity.js";
 
-export * from "./entities/agreed_scopes.entity";
-export * from "./entities/application.entity";
-export * from "./entities/connect.entity";
-export * from "./entities/require_scope.entity";
-export * from "./entities/scope.entity";
-export * from "./entities/user.entity";
+export * from "./entities/agreed_scopes.entity.js";
+export * from "./entities/application.entity.js";
+export * from "./entities/connect.entity.js";
+export * from "./entities/require_scope.entity.js";
+export * from "./entities/scope.entity.js";
+export * from "./entities/user.entity.js";
+export * from "./entities/redirect_uri.entity.js";
 
 export const AUTHKIT_ENTITIES = [
   OauthAgreedScopeEntity,
@@ -19,4 +21,5 @@ export const AUTHKIT_ENTITIES = [
   OauthRequireScopeEntity,
   OauthScopeEntity,
   UserEntity,
+  OauthRedirectURIEntity,
 ];

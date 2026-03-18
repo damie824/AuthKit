@@ -1,5 +1,5 @@
 {
-  "name": "@authkit/account-database",
+  "name": "@authkit/account-schema",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -8,13 +8,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./*": "./dist/*.js"
+    ".": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -29,6 +23,7 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "typeorm": "^0.3.28"
+    "typeorm": "^0.3.28",
+    "zod": "^4.3.6"
   }
 }

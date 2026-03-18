@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { OauthScopeEntity } from "./scope.entity";
-import { OauthApplicationEntity } from "./application.entity";
+import type { Relation } from "typeorm";
+import { OauthScopeEntity } from "./scope.entity.js";
+import { OauthApplicationEntity } from "./application.entity.js";
 
 @Entity("oauth-require-scope")
 export class OauthRequireScopeEntity {
@@ -17,7 +18,7 @@ export class OauthRequireScopeEntity {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "scope_id" })
-  scope!: OauthScopeEntity;
+  scope!: Relation<OauthScopeEntity>;
 
   @ManyToOne(
     () => OauthApplicationEntity,
@@ -27,5 +28,5 @@ export class OauthRequireScopeEntity {
     },
   )
   @JoinColumn({ name: "application_id" })
-  application!: OauthApplicationEntity;
+  application!: Relation<OauthApplicationEntity>;
 }
